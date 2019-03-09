@@ -821,6 +821,7 @@ body {
 	width: 100%;
 	height: 180px;
 	background-image: url('img/img_bg.jpg');
+	background-size: 100%;
 	position: absolute
 }
 
