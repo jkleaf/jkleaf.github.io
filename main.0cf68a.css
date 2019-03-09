@@ -2914,8 +2914,9 @@ pre .css~* .id,pre .id {
 }
 
 #footer {
-	font-size: 12px;
+	font-size: 16px;
 	font-family: Menlo,Monaco,Andale Mono,lucida console,Courier New,monospace;
+	color: white;
 	text-shadow: 0 1px #fff;
 	position: absolute;
 	bottom: 30px;
