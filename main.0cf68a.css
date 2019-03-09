@@ -808,7 +808,7 @@ body {
 }
 
 .left-col {
-	background: #fff;
+	background: rgba(0, 0, 0, 0.74);
 	width: 300px;
 	position: fixed;
 	opacity: 1;
@@ -837,7 +837,7 @@ body {
 }
 
 .left-col #header a {
-	color: #696969
+	color: #ffc160e3
 }
 
 .left-col #header a:hover {
@@ -846,7 +846,7 @@ body {
 
 .left-col #header .header-subtitle {
 	text-align: center;
-	color: #999;
+	color: #fbfff775;
 	font-size: 14px;
 	line-height: 25px;
 	overflow: hidden;
