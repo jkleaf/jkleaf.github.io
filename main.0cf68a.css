@@ -820,6 +820,7 @@ body {
 .left-col .overlay {
 	width: 100%;
 	height: 180px;
+	background-image: url('img/img_bg.jpg');
 	position: absolute
 }
 
