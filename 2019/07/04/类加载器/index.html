@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Really? | JkLeaf&#39;s Blog</title>
+  <title>类加载器 | JkLeaf&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是菜鸡">
-<meta name="keywords" content="java,html5,python,Code">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JkLeaf&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/Really/index.html">
+  <meta name="description" content="类加载器加载Class大致要经过如下8个步骤：1.检测此Class是否载入过，即在缓冲区中是否有此Class，如果有直接进入第8步，否则进入第2步。 2.如果没有父类加载器，则要么Parent是根类加载器，要么本身就是根类加载器，则跳到第4步，如果父类加载器存在，则进入第3步。 3.请求使用父类加载器去载入目标类，如果载入成功则跳至第8步，否则接着执行第5步。 4.请求使用根类加载器去载入目标类，">
+<meta name="keywords" content="反射Reflect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类加载器">
+<meta property="og:url" content="http://yoursite.com/2019/07/04/类加载器/index.html">
 <meta property="og:site_name" content="JkLeaf&#39;s Blog">
-<meta property="og:description" content="我是菜鸡">
+<meta property="og:description" content="类加载器加载Class大致要经过如下8个步骤：1.检测此Class是否载入过，即在缓冲区中是否有此Class，如果有直接进入第8步，否则进入第2步。 2.如果没有父类加载器，则要么Parent是根类加载器，要么本身就是根类加载器，则跳到第4步，如果父类加载器存在，则进入第3步。 3.请求使用父类加载器去载入目标类，如果载入成功则跳至第8步，否则接着执行第5步。 4.请求使用根类加载器去载入目标类，">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-04T09:04:40.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JkLeaf&#39;s Blog">
-<meta name="twitter:description" content="我是菜鸡">
+<meta name="twitter:title" content="类加载器">
+<meta name="twitter:description" content="类加载器加载Class大致要经过如下8个步骤：1.检测此Class是否载入过，即在缓冲区中是否有此Class，如果有直接进入第8步，否则进入第2步。 2.如果没有父类加载器，则要么Parent是根类加载器，要么本身就是根类加载器，则跳到第4步，如果父类加载器存在，则进入第3步。 3.请求使用父类加载器去载入目标类，如果载入成功则跳至第8步，否则接着执行第5步。 4.请求使用根类加载器去载入目标类，">
   
     <link rel="alternative" href="/atom.xml" title="JkLeaf&#39;s Blog" type="application/atom+xml">
   
@@ -179,71 +180,256 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-类加载器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/08/林景煌SB/" class="archive-article-date">
-  	<time datetime="2019-03-08T09:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/08/林景煌SB/">林景煌SB</a>
+    <h1 class="article-title" itemprop="name">
+      类加载器
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/07/04/类加载器/" class="archive-article-date">
+  	<time datetime="2019-07-04T08:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
+</a>
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
           
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="类加载器加载Class大致要经过如下8个步骤："><a href="#类加载器加载Class大致要经过如下8个步骤：" class="headerlink" title="类加载器加载Class大致要经过如下8个步骤："></a>类加载器加载Class大致要经过如下8个步骤：</h3><p>1.检测此Class是否载入过，即在缓冲区中是否有此Class，如果有直接进入第8步，否则进入第2步。</p>
+<p>2.如果没有父类加载器，则要么Parent是根类加载器，要么本身就是根类加载器，则跳到第4步，如果父类加载器存在，则进入第3步。</p>
+<p>3.请求使用父类加载器去载入目标类，如果载入成功则跳至第8步，否则接着执行第5步。</p>
+<p>4.请求使用根类加载器去载入目标类，如果载入成功则跳至第8步，否则跳至第7步。</p>
+<p>5.当前类加载器尝试寻找Class文件，如果找到则执行第6步，如果找不到则执行第7步。</p>
+<p>6.从文件中载入Class，成功后跳至第8步。</p>
+<p>7.抛出ClassNotFountException异常。</p>
+<p>8.返回对应的java.lang.Class对象。</p>
+<h3 id="创建并使用自定义的类加载器"><a href="#创建并使用自定义的类加载器" class="headerlink" title="创建并使用自定义的类加载器"></a>创建并使用自定义的类加载器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompileClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 读取一个文件的内容</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] getBytes(String filename) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		File file = <span class="keyword">new</span> File(filename);</span><br><span class="line">		<span class="keyword">long</span> len = file.length();</span><br><span class="line">		<span class="keyword">byte</span>[] raw = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>) len];</span><br><span class="line">		<span class="keyword">try</span> (FileInputStream fin = <span class="keyword">new</span> FileInputStream(file)) &#123;</span><br><span class="line">			<span class="comment">// 一次读取class文件的全部二进制数据</span></span><br><span class="line">			<span class="keyword">int</span> r = fin.read(raw);</span><br><span class="line">			<span class="keyword">if</span> (r != len)</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"无法读取全部文件："</span> + r + <span class="string">" != "</span> + len);</span><br><span class="line">			<span class="keyword">return</span> raw;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义编译指定Java文件的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">compile</span><span class="params">(String javaFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"CompileClassLoader:正在编译 "</span> + javaFile + <span class="string">"..."</span>);</span><br><span class="line">		<span class="comment">// 调用系统的javac命令</span></span><br><span class="line">		Process p = Runtime.getRuntime().exec(<span class="string">"javac "</span> + javaFile);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// 其他线程都等待这个线程完成</span></span><br><span class="line">			p.waitFor();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException ie) &#123;</span><br><span class="line">			System.out.println(ie);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 获取javac线程的退出值</span></span><br><span class="line">		<span class="keyword">int</span> ret = p.exitValue();</span><br><span class="line">		<span class="comment">// 返回编译是否成功</span></span><br><span class="line">		<span class="keyword">return</span> ret == <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 重写ClassLoader的findClass方法</span></span><br><span class="line">	<span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">		Class clazz = <span class="keyword">null</span>;</span><br><span class="line">		<span class="comment">// 将包路径中的点（.）替换成斜线（/）。</span></span><br><span class="line">		String fileStub = name.replace(<span class="string">"."</span>, <span class="string">"/"</span>);</span><br><span class="line">		String javaFilename = fileStub + <span class="string">".java"</span>;</span><br><span class="line">		String classFilename = fileStub + <span class="string">".class"</span>;</span><br><span class="line">		File javaFile = <span class="keyword">new</span> File(javaFilename);</span><br><span class="line">		File classFile = <span class="keyword">new</span> File(classFilename);</span><br><span class="line">		<span class="comment">// 当指定Java源文件存在，且class文件不存在、或者Java源文件</span></span><br><span class="line">		<span class="comment">// 的修改时间比class文件修改时间更晚，重新编译</span></span><br><span class="line">		<span class="keyword">if</span> (javaFile.exists() &amp;&amp; (!classFile.exists() || javaFile.lastModified() &gt; classFile.lastModified())) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">// 如果编译失败，或者该Class文件不存在</span></span><br><span class="line">				<span class="keyword">if</span> (!compile(javaFilename) || !classFile.exists()) &#123;</span><br><span class="line">					<span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException(<span class="string">"ClassNotFoundExcetpion:"</span> + javaFilename);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">				ex.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果class文件存在，系统负责将该文件转换成Class对象</span></span><br><span class="line">		<span class="keyword">if</span> (classFile.exists()) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">// 将class文件的二进制数据读入数组</span></span><br><span class="line">				<span class="keyword">byte</span>[] raw = getBytes(classFilename);</span><br><span class="line">				<span class="comment">// 调用ClassLoader的defineClass方法将二进制数据转换成Class对象</span></span><br><span class="line">				clazz = defineClass(name, raw, <span class="number">0</span>, raw.length);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException ie) &#123;</span><br><span class="line">				ie.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果clazz为null，表明加载失败，则抛出异常</span></span><br><span class="line">		<span class="keyword">if</span> (clazz == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException(name);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> clazz;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义一个主方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// 如果运行该程序时没有参数，即没有目标类</span></span><br><span class="line">		<span class="keyword">if</span> (args.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"缺少目标类，请按如下格式运行Java源文件："</span>);</span><br><span class="line">			System.out.println(<span class="string">"java CompileClassLoader ClassName"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 第一个参数是需要运行的类</span></span><br><span class="line">		String progClass = args[<span class="number">0</span>];</span><br><span class="line">		<span class="comment">// 剩下的参数将作为运行目标类时的参数，</span></span><br><span class="line">		<span class="comment">// 将这些参数复制到一个新数组中</span></span><br><span class="line">		String[] progArgs = <span class="keyword">new</span> String[args.length - <span class="number">1</span>];</span><br><span class="line">		System.arraycopy(args, <span class="number">1</span>, progArgs, <span class="number">0</span>, progArgs.length);</span><br><span class="line">		CompileClassLoader ccl = <span class="keyword">new</span> CompileClassLoader();</span><br><span class="line">		<span class="comment">// 加载需要运行的类(调用了重写过的findClass)</span></span><br><span class="line">		Class&lt;?&gt; clazz = ccl.loadClass(progClass);</span><br><span class="line">		<span class="comment">// 获取需要运行的类的主方法(public static void main(String[] args))</span></span><br><span class="line">		Method main = clazz.getMethod(<span class="string">"main"</span>, (<span class="keyword">new</span> String[<span class="number">0</span>]).getClass());<span class="comment">//new String[0]</span></span><br><span class="line">		Object[] argsArray = &#123; progArgs &#125;;</span><br><span class="line">        <span class="comment">//源码注释:If the underlying method is static, then the specified &#123;@code obj&#125;</span></span><br><span class="line">      	<span class="comment">//argument is ignored. It may be null.</span></span><br><span class="line">		main.invoke(<span class="keyword">null</span>, argsArray);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*在本类中的findClass()方法中先检查需要加载类的Class文件是否存在，如果不存在则先编译源文件，再调用ClassLoader的defineClass()方法来加载这个Class文件，并生成相应的Class对象。*/</span></span><br></pre></td></tr></table></figure>
+<p>接下来可以随意提供一个简单的主类，该主类无须编译就可以使用上面的CompileClassLoader来运行它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (String arg : args) &#123;</span><br><span class="line">			System.out.println(<span class="string">"运行Hello的参数:"</span> + arg);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接使用如下命令:</p>
+<p><code>java CompileClassLoader Hello param1</code></p>
+<p>运行结果如下:</p>
+<p><code>CompileClassLoader:正在编译 Hello.java...</code></p>
+<p><code>运行Hello的参数:param1</code></p>
+<p><strong>使用自定义的类加载器，可以实现如下常见功能：</strong></p>
+<ul>
+<li>执行代码前自动验证数字签名。</li>
+<li>根据用户提供的密码解密代码，从而可以实现代码混淆器来避免反编译class文件。</li>
+<li>根据用户需求来动态地加载类</li>
+<li>根据应用需求把其他数字以字节码的形式加载到应用中</li>
+</ul>
+<h3 id="URLClassLoader类"><a href="#URLClassLoader类" class="headerlink" title="URLClassLoader类"></a>URLClassLoader类</h3><p>URLClassLoader功能比较强大，它既可以从本地文件系统读取二进制文件来加载类，也可以从远程主机获取二进制文件来加载类。</p>
+<p>下面程序示范了如何直接从文件系统中加载MySQL驱动，并使用该驱动来获取数据库连接，通过这种方式来取得数据库连接就可以无须将MySQL驱动添加到CLASSPATH环境变量中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">URLClassLoaderTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Connection conn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义一个获取数据库连接方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConn</span><span class="params">(String url, String user, String pass)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (conn == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="comment">// 创建一个URL数组</span></span><br><span class="line">            <span class="comment">//file:为前缀(本地文件系统加载)</span></span><br><span class="line">            <span class="comment">//http:为前缀(从互联网通过HTTP访问来加载)</span></span><br><span class="line">			URL[] urls = &#123; <span class="keyword">new</span> URL(<span class="string">"file:mysql-connector-java-8.0.12.jar"</span>) &#125;;</span><br><span class="line">			<span class="comment">// 以默认的ClassLoader作为父ClassLoader，创建URLClassLoader</span></span><br><span class="line">			URLClassLoader myClassLoader = <span class="keyword">new</span> URLClassLoader(urls);</span><br><span class="line">			<span class="comment">// 调用该对象的loadClass()方法来加载MySQL的JDBC驱动，并创建默认实例</span></span><br><span class="line">            <span class="comment">//通过Driver而不是DriverManager来获取数据库连接</span></span><br><span class="line">            <span class="comment">//Class.newInstance()只能反射无参的构造器；</span></span><br><span class="line">			<span class="comment">//Constructor.newInstance()可以反射任何构造器；</span></span><br><span class="line">			Driver driver = (Driver) myClassLoader.loadClass(<span class="string">"com.mysql.jdbc.Driver"</span>).getConstructor().newInstance();</span><br><span class="line">			<span class="comment">// 创建一个设置JDBC连接属性的Properties对象</span></span><br><span class="line">			Properties props = <span class="keyword">new</span> Properties();</span><br><span class="line">			<span class="comment">// 至少需要为该对象传入user和password两个属性</span></span><br><span class="line">			props.setProperty(<span class="string">"user"</span>, user);</span><br><span class="line">			props.setProperty(<span class="string">"password"</span>, pass);</span><br><span class="line">			<span class="comment">// 调用Driver对象的connect方法来取得数据库连接</span></span><br><span class="line">			conn = driver.connect(url, props);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> conn;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(getConn(<span class="string">"jdbc:mysql://localhost:3306/mysql"</span>, <span class="string">"root"</span>, <span class="string">"mysql"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果😄<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+			<!-- <span id="busuanzi_container_site_pv">本文总阅读量 -->
+				<!-- <span id="busuanzi_value_site_pv"></span>次</span>	 -->
+			
+			
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Really?</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">反射Reflect</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+	  <span id="busuanzi_container_page_pv">
+		  |阅读量(<span id="busuanzi_value_page_pv"></span>)
+	  </span>
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Test//" class="article-tag-list-link color5">Test</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/04/类加载器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/03/08/林景煌SB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">林景煌SB</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  
+  
+
+  
+  
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '65554e0de7159914abaa',
+  	clientSecret: '7c66a58cfd3a05436d9c4db8530609ff1297d218',
+  	repo: 'first_blog_comments',
+  	owner: 'jkleaf',
+  	admin: ['jkleaf'],
+  	id: 'Thu Jul 04 2019 16:55:51 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
 
 
           </div>
@@ -280,9 +466,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
