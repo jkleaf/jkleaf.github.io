@@ -202,7 +202,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">93字</span>
+        <span class="post-count">281字</span>
       </span>
     </span>
 
@@ -245,6 +245,42 @@
 </li>
 <li><p><strong>配置Redis</strong></p>
 <p>修改redis.conf文件</p>
+<ul>
+<li><p>port:6379</p>
+</li>
+<li><p>后端模式启动：</p>
+<p>​    文件中修改：daemonize yes</p>
+</li>
+</ul>
+</li>
+<li><p>启动Redis</p>
+<p><code>/usr/local/bin/redis-server /root/redis-5.0.5/redis.conf(redis配置文件路径)</code></p>
+</li>
+<li><p>设置Redis开机自启动</p>
+</li>
+<li><p>查看redis进程</p>
+<p><code>ps -ef | grep redis</code></p>
+</li>
+<li><p>启动、关闭redis客户端</p>
+<p><code>redis-cli</code></p>
+<p><code>redis-cli shutdown</code></p>
+</li>
+<li><p>设置redis密码（启动redis客户端后）</p>
+<p><code>config set requirepass xxxxx</code></p>
+</li>
+<li><p>将redis.conf里的bind 127.0.0.1 注释掉，以便外界连接</p>
+<p>需要杀死原来的redis-server进程，重新启动redis才能生效(如下图)</p>
+<p><img src="/img/redis/redis-server.png" alt="redis-server"></p>
+</li>
+<li><p>配置防火墙</p>
+<p><code>vi /etc/sysconfig/iptables</code></p>
+<p><code>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6379 -j ACCEPT</code> 加入accept规则</p>
+<p><code>service iptables restart</code></p>
+</li>
+<li><p>使用本地图形化Redis管理工具连接远程服务器成功</p>
+<p><img src="/img/redis/redis_connection.png" alt="redis_connection"></p>
+</li>
+<li><p>接下来就可以尽情地玩耍了~</p>
 </li>
 </ul>
 
@@ -886,15 +922,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">反射reflect</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Really?</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">反射Reflect</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">反射reflect</a>
               </li>
             
             <div class="clearfix"></div>
